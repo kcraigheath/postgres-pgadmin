@@ -1,5 +1,5 @@
-# Postgres DB + PgAdmin running in docker-compose  :elephant:
-Docker images to host a local developement postgres databate along with a pgadmin interactive server to maintain the db.
+# Postgres DB + PgAdmin running in docker-compose  :elephant::whale:
+Docker compose script to host a local development postgres database along with a pgadmin interactive server to maintain the db.
 
 
 ## Instructions
@@ -24,5 +24,7 @@ Docker images to host a local developement postgres databate along with a pgadmi
      - Port: `5432`
      - Username: `postgres`
      - Password: `postgres`
+
+
 
 
