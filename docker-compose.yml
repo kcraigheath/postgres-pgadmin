@@ -1,0 +1,43 @@
+version: '3.3'
+
+services:
+  db:
+    container_name: dev_postgres
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - postgres
+    ports:
+      - "5432:5432"
+    expose: 
+      - "5432"
+    restart: unless-stopped
+    
+  
+  pgadmin:
+    container_name: dev_pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+       - ./pgadmin-data:/var/lib/pgadmin/data
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes: 
+  postgres-data:
+    driver: local
+  pgadmin-data:
+    driver: local
